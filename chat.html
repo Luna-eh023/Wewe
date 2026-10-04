@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chat</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="chat.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            MyWebsite
+        </div>
+
+        <div class="navbar-right">
+
+            <!-- BUTTON CHAT -->
+            <button class="chat-button" onclick="toggleChat()">
+
+                <i class="fa-regular fa-comments"></i>
+
+                <!-- Jumlah unread -->
+                <span class="chat-badge">3</span>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         CHAT POPUP
+    ========================== -->
+
+    <div class="chat-popup" id="chatPopup">
+
+
+        <!-- =========================
+             HEADER CHAT
+        ========================== -->
+
+        <div class="chat-header">
+
+            <div>
+                <h3>Chat</h3>
+
+                <p>
+                    Pesan dan percakapan kamu
+                </p>
+            </div>
+
+            <button
+                class="close-button"
+                onclick="toggleChat()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             DAFTAR CHAT
+        ========================== -->
+
+        <div class="chat-list" id="chatList">
+
+
+            <!-- CHAT 1 -->
+
+            <div
+                class="chat-item"
+                onclick="openChat('Nina Store', this)">
+
+                <div class="chat-avatar">
+
+                    <i class="fa-solid fa-store"></i>
+
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-name">
+
+                        <strong>
+                            Nina Store
+                        </strong>
+
+                        <span>
+                            10:32
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Pagi kak, barangnya masih tersedia?
+                    </p>
+
+                </div>
+
+                <!-- UNREAD -->
+                <span class="unread">
+                    2
+                </span>
+
+            </div>
+
+
+            <!-- CHAT 2 -->
+
+            <div
+                class="chat-item"
+                onclick="openChat('Kang Info Paket', this)">
+
+                <div class="chat-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-name">
+
+                        <strong>
+                            Kang Info Paket
+                        </strong>
+
+                        <span>
+                            09:15
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Paket kamu sudah sampai ya kak.
+                    </p>
+
+                </div>
+
+                <!-- UNREAD -->
+                <span class="unread">
+                    1
+                </span>
+
+            </div>
+
+
+            <!-- CHAT 3 -->
+
+            <div
+                class="chat-item"
+                onclick="openChat('Pria Solo', this)">
+
+                <div class="chat-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-name">
+
+                        <strong>
+                            Pria Solo
+                        </strong>
+
+                        <span>
+                            Kemarin
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Baik kak. Pesanannya sedang dikemas ya.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHAT 4 -->
+
+            <div
+                class="chat-item"
+                onclick="openChat('Customer Service', this)">
+
+                <div class="chat-avatar">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-name">
+
+                        <strong>
+                            Customer Service
+                        </strong>
+
+                        <span>
+                            Senin
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Ada yang bisa kami bantu?
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CHAT ROOM
+        ========================== -->
+
+        <div
+            class="chat-room"
+            id="chatRoom">
+
+
+            <!-- ROOM HEADER -->
+
+            <div class="room-header">
+
+                <button
+                    class="back-button"
+                    onclick="backToChatList()">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </button>
+
+
+                <div class="room-user">
+
+                    <div class="small-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong id="roomName">
+                            Nina Store
+                        </strong>
+
+                        <span>
+                            Online
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 MESSAGES
+            ========================== -->
+
+            <div
+                class="messages"
+                id="messages">
+
+
+                <!-- PESAN DARI ORANG LAIN -->
+
+                <div class="message received">
+
+                    <p>
+                        Halo kak 👋
+                    </p>
+
+                    <span>
+                        10:30
+                    </span>
+
+                </div>
+
+
+                <div class="message received">
+
+                    <p>
+                        Ada yang bisa saya bantu?
+                    </p>
+
+                    <span>
+                        10:30
+                    </span>
+
+                </div>
+
+
+                <!-- PESAN KITA -->
+
+                <div class="message sent">
+
+                    <p>
+                        Halo kak, saya mau tanya barangnya.
+                    </p>
+
+                    <span>
+                        10:31
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 INPUT PESAN
+            ========================== -->
+
+            <div class="chat-input">
+
+                <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="Tulis pesan..."
+                    onkeypress="handleEnter(event)"
+                >
+
+                <button onclick="sendMessage()">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="chat.js"></script>
+
+</body>
+
+</html>
